@@ -23,12 +23,12 @@ with open('data.csv', 'w', newline='' ,encoding="utf8") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(data.keys())
     writer.writerow([v.group(1) if v else '' for v in data.values()])
-    writer.writerow(['order', 'name', 'count', 'price'])
+    writer.writerow(['order', 'name', 'count', 'price'] + [''] * (len(data) - 4))  # Add empty strings for the missing columns
     for x in order_info:
         writer.writerow([
             x[0], 
             x[1],
             float(x[2].strip().replace(',','.')),
             float(x[3].strip().replace(',','.').replace(' ','')),
-            '', '', '', '', '', ''  # Add empty strings for the missing columns
+            '', '', '', '', '', '' 
         ])
